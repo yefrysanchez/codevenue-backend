@@ -1,9 +1,9 @@
-const Genre = require("../model/Genres")
+const Genre = require("../model/Song")
 
 //Get all Data
 const getAllData = async (req , res) => {
+    const genres = await Genre.find()
     try{
-        const genres = await Genre.find()
         res.json(genres)
     }
     catch (err) { 
