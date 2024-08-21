@@ -1,12 +1,13 @@
 
 const express = require("express");
-const { getAllData } = require("../controller/GenresController");
+const { getAllSongs,createSong } = require("../controller/SongsController");
 const routerSong = express.Router()
 
 
 
 
-routerSong.get("/", getAllData)
+routerSong.get("/", getAllSongs)
+routerSong.post("/", createSong)
 
 
 module.exports = {

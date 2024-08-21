@@ -5,18 +5,20 @@ const app = express();
 const mongoose = require("mongoose");
 const PORT = process.env.PORT || 5505;
 const connectDB = require("./config/dbConn");
+const apiKeyMiddleware = require('./middleware/apiKeyMiddleware');
 
 //Connect to mongoDB
 connectDB()
 
-// Middleware to parse JSON
-app.use(express.json());
+// Middleware 
+app.use(express.json()); //to parse JSON
+app.use(apiKeyMiddleware)
 
 app.get("/", (req, res) => {
   res.send("<h1>Welcome to CodeVenue</h1>");
 });
 
-app.use("/api/genres", routerSong);
+app.use("/api/songs", routerSong);
 
 mongoose.connection.once("open", () => {
   console.log("Connected to MongoDB");
