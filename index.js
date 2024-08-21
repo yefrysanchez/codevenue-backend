@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const PORT = process.env.PORT || 5505;
 const connectDB = require("./config/dbConn");
 const apiKeyMiddleware = require('./middleware/apiKeyMiddleware');
+const cors = require("cors")
 
 //Connect to mongoDB
 connectDB()
@@ -13,6 +14,7 @@ connectDB()
 // Middleware 
 app.use(express.json()); //to parse JSON
 app.use(apiKeyMiddleware)
+app.use(cors())
 
 app.get("/", (req, res) => {
   res.send("<h1>Welcome to CodeVenue</h1>");
